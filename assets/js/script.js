@@ -52,7 +52,7 @@ function getStates() {
                     historiasHTML += `
                         <div class="card" style="width: 18rem; margin: 10px;">
                             ${mediaElement}
-                            <div class="card-body" style="background-color: #D9D9D9;">
+                            <div class="card-body">
                                 <p class="card-title">
                                     Publicado: ${convertEpochToTimeZone(item.taken_at, timeZone)}
                                 </p>
