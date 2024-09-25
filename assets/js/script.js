@@ -2,6 +2,11 @@ const timeZone = 'America/Bogota';
 
 function getStates() {
     let usuario = document.getElementById('usuario').value;
+    // Verificar si el input del usuario está vacío
+    if (!usuario.trim()) {
+        alert('Por favor, ingrese un nombre de usuario.');
+        return;
+    }
     let nameUserProfile = document.getElementById('nameUserProfile');
     let userNameProfile = document.getElementById('userNameProfile');
     let imgProfile = document.getElementById('imgProfile');
@@ -9,7 +14,8 @@ function getStates() {
     let loadingMessage = document.getElementById('loadingMessage');
     let historiasContainer = document.getElementById('historiasContainer');
     let countStory = document.getElementById('countStory');
-
+    const defaultProfilePic = 'https://avatars.githubusercontent.com/8ustamante';
+    imgProfile.src = defaultProfilePic;
     // Mostrar mensaje de cargando
     loadingMessage.style.display = 'block';
     historiasContainer.style.display = 'none';
@@ -58,15 +64,21 @@ function getStates() {
                 historiasDiv.innerHTML = historiasHTML;
                 countStory.textContent = data.data.count;
             } else {
-                historiasDiv.innerHTML = '<p>No hay historias disponibles.</p>';
+                historiasDiv.innerHTML = '';
                 countStory.textContent = 0;
             }
 
             // Mostrar el perfil del usuario
-            const user = data.data.additional_data.user;
-            nameUserProfile.innerHTML = user.full_name;
-            userNameProfile.innerHTML = user.username;
-            imgProfile.src = user.profile_pic_url;
+            if (data.data.additional_data && data.data.additional_data.user) {
+                const user = data.data.additional_data.user;
+                nameUserProfile.innerHTML = user.full_name;
+                userNameProfile.innerHTML = user.username;
+                imgProfile.src = user.profile_pic_url ? user.profile_pic_url : defaultProfilePic;
+            } else {
+                nameUserProfile.innerHTML = '';
+                userNameProfile.innerHTML = '';
+                imgProfile.src = defaultProfilePic;
+            }
 
             // Ocultar mensaje de carga y mostrar historias
             loadingMessage.style.display = 'none';

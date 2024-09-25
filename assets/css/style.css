@@ -3,9 +3,9 @@
 /* variables de colores */
 
 :root {
-  --bg-body: #181c14;
+  --bg-body: #000000;
   --color-1: #3c3d37;
-  --color-2: #2f382c;
+  --color-2: #202220;
   --color-3: #ecdfcc;
   --text: #ffffff;
   --gradient-text: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
@@ -51,7 +51,7 @@
 }
 
 .image_inner_container img {
-  height: 100px;
+  height: 80;
   width: 100px;
   border-radius: 50%;
 }
@@ -71,5 +71,5 @@
   background: var(--color-2);
   border-radius: 10px;
   margin: 20px;
-  width: auto;
+  width: 30rem;
 }
